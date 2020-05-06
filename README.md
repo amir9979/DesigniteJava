@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.com/tushartushar/DesigniteJava.svg?token=qqYCSPgxVmWCxpyzFpz5&branch=master)](https://travis-ci.com/tushartushar/DesigniteJava)
+# [DesigniteJava](https://github.com/tushartushar/DesigniteJava) + [Organic](https://github.com/opus-research/organic)
 
-# DesigniteJava
+## DesigniteJava
 DesigniteJava is a code quality assessment tool for code written in Java. It detects numerous design and implementation smells. It also computes many commonly used object-oriented metrics.
 
 ## Features
@@ -48,10 +49,10 @@ DesigniteJava is a code quality assessment tool for code written in Java. It det
 	- FANIN (Fan-in - Class)
 	- FANOUT (Fan-out - Class)
 	
-## Where can I get the latest release?
+### Where can I get the latest release?
 You may download the executable jar from the [Designite](http://www.designite-tools.com/DesigniteJava) website.
 
-## Compilation
+### Compilation
 We use maven to develop and build this application with the help of Eclipse IDE and libraries.
 To create a runnable jar, run the following command in the directory where the repository is cloned:
 ```text
@@ -61,7 +62,7 @@ If you use Eclipse:
 * open the project using Eclipse
 * then right-click on the project name and select 'run as > maven install'
 
-## Execute the tool
+### Execute the tool
 After the previous step is done:
 * Open terminal/command line console and run the jar
 ```text
@@ -69,17 +70,38 @@ After the previous step is done:
   ```
 **Note:** Make sure that the output folder is empty. Tool deletes all the existing files in the output folder.
 
-## Notes
+### Notes
 The implemented LCOM is a custom implementation to avoid the problems of existing LCOM alternatives. Traditional, LCOM value may range only between 0 and 1. However, there are many cases, when computing LCOM is not feasible and traditional implementations give value 0 giving us a false sense of satisfaction. So, when you find -1 as LCOM value for a class, this means we do not have enough information or LCOM is not applicable (for instance, for an interface). More details can be found here (though, it is an old post): http://www.tusharma.in/technical/revisiting-lcom/
 
-## Contribute
+### Contribute
 Feel free to clone/fork/contribute to the DesigniteJava open-source project.
 
-## Report Bugs
+### Report Bugs
 Open an issue if you encounter a bug in the tool.
 
-## Credits
+### Credits
 Apart from [me](http://www.tusharma.in), following people generously contributed efforts to this project.
 - Antonis Gkortzis
 - Theodore Stassinopoulos
 - Alexandra Chaniotakis
+
+## Organic 
+
+Project adapted from [opus-research/organic](https://github.com/opus-research/organic)
+
+### Code Smells Detected
+
+We implemented the rules published by [Bavota et al.](http://www.sciencedirect.com/science/article/pii/S0164121215001053) in order to detect all code smells types. This plugin detects the following 11 types of code smells:
+
+- **Class data should be private**: 	A class having at least one public field.
+- **Complex class**:	A class having at least one method for which McCabe cyclomatic complexity is higher than 10.
+- **Feature envy**:	All methods having more calls with another class than the one they are implemented.
+- **Blob class**:	All classes having (i) cohesion lower than the average of the system AND (ii) LOCs > 500.
+- **Lazy class**:	All classes having LOCs lower than the first quartile of the distribution of LOCs for all systems classes.
+- **Long method**:	All methods having LOCs higher than the average of the system.
+- **Long parameter list**: 	All methods having a number of parameters higher than the average of the system.
+- **Message chain**: 	All chains of methods calls longer than three.
+- **Refused bequest**: 	All classes overriding more than half of the methods inherited by a superclass.
+- **Spaghetti code**: 	A class implementing at least two long methods interacting between them through method calls or shared fields. 
+- **Speculative generality**:	A class declared as abstract having less than three children classes using its methods.
+
