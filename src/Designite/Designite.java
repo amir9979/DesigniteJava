@@ -8,9 +8,6 @@ import Designite.utils.Constants;
 import Designite.utils.Logger;
 
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import org.apache.commons.cli.*;
@@ -29,6 +26,7 @@ public class Designite {
 		project.resolve();
 		project.computeMetrics();
 		project.detectCodeSmells();
+		project.detectOrganicSmells();
 		if (Constants.DEBUG)
 			writeDebugLog(argsObj, project);
 		Logger.log("Done.");

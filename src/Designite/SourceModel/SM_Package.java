@@ -124,7 +124,7 @@ public class SM_Package extends SM_SourceItem {
 			updateDependencyGraph(type);
 		}
 	}
-	
+
 	private void updateDependencyGraph(SM_Type type) {
 		if (type.getReferencedTypeList().size() > 0) {
 			for (SM_Type dependency : type.getReferencedTypeList()) {
@@ -164,13 +164,13 @@ public class SM_Package extends SM_SourceItem {
 
 	public void extractCodeSmells() {
 		for (SM_Type type : typeList) { 
-			DesignSmellFacade detector = new DesignSmellFacade(metricsMapping.get(type)
+			DesignSmellFacade designSmellDetector = new DesignSmellFacade(metricsMapping.get(type)
 					, new SourceItemInfo(getParentProject().getName()
 							, getName()
 							, type.getName())
 					);
 			type.extractCodeSmells();
-			smellMapping.put(type, detector.detectCodeSmells());
+			smellMapping.put(type, designSmellDetector.detectCodeSmells());
 			exportDesignSmellsToCSV(type);
 		}
 	}

@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import Designite.metrics.OrganicFacade;
+import Designite.organic.resources.Method;
+import Designite.organic.resources.Type;
+import Designite.utils.Constants;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -225,6 +229,35 @@ public class SM_Project extends SM_SourceItem {
 		}
 		hierarchyGraph.computeConnectedComponents();
 		dependencyGraph.computeStronglyConnectedComponents();
+	}
+
+
+    public void detectOrganicSmells() {
+		Logger.log("Extracting Organic Code Smells ...");
+		List<String> sourcePaths = new ArrayList<>();
+		sourcePaths.add(inputArgs.getSourceFolder());
+		OrganicFacade organicFacade = new OrganicFacade(this.getName(), sourcePaths);
+		organicFacade.extractOrganicSmells();
+
+		for (Type type: organicFacade.getTypes()) {
+			exportOrganicTypeSmellsToCSV(organicFacade, type);
+
+			for (Method method : type.getMethods()) {
+				exportOrganicMethodSmellsToCSV(organicFacade, type, method);
+			}
+		}
+	}
+
+	private void exportOrganicTypeSmellsToCSV(OrganicFacade organicFacade, Type type) {
+		CSVUtils.addAllToCSVFile(inputArgs.getOutputFolder()
+						+ File.separator + Constants.ORGANIC_TYPE_CODE_SMELLS_PATH_SUFFIX
+				, organicFacade.getTypeSmells(type));
+	}
+
+	private void exportOrganicMethodSmellsToCSV(OrganicFacade organicFacade, Type type, Method method) {
+		CSVUtils.addAllToCSVFile(inputArgs.getOutputFolder()
+						+ File.separator + Constants.ORGANIC_METHOD_CODE_SMELLS_PATH_SUFFIX
+				, organicFacade.getMethodSmells(type, method));
 	}
 
 	public void computeMetrics() {

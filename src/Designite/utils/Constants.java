@@ -16,7 +16,9 @@ public class Constants {
 	public static final String METHOD_METRICS_PATH_SUFFIX = "methodMetrics.csv";
 	public static final String DESIGN_CODE_SMELLS_PATH_SUFFIX = "designCodeSmells.csv";
 	public static final String IMPLEMENTATION_CODE_SMELLS_PATH_SUFFIX = "implementationCodeSmells.csv";
-	
+	public static final String ORGANIC_TYPE_CODE_SMELLS_PATH_SUFFIX = "organicTypeCodeSmells.csv";
+	public static final String ORGANIC_METHOD_CODE_SMELLS_PATH_SUFFIX = "organicMethodCodeSmells.csv";
+
 	public static final String TYPE_METRICS_HEADER = "Project Name"
 			+ ",Package Name"
 			+ ",Type Name"
@@ -54,5 +56,19 @@ public class Constants {
 			+ ",Method Name"
 			+ ",Code Smell"
 			+ "\n";
+
+	public static final String ORGANIC_TYPE_CODE_SMELLS_HEADER  = "Project Name"
+			+ ",Package Name"
+			+ ",Type Name"
+			+ ",Code Smell"
+			+ "\n";
+
+	public static final String ORGANIC_METHOD_CODE_SMELLS_HEADER = "Project Name"
+			+ ",Package Name"
+			+ ",Type Name"
+			+ ",Method Name"
+			+ ",Code Smell"
+			+ "\n";
+
 	public static final boolean DEBUG = false;
 }
