@@ -1,6 +1,12 @@
-[![Build Status](https://travis-ci.com/tushartushar/DesigniteJava.svg?token=qqYCSPgxVmWCxpyzFpz5&branch=master)](https://travis-ci.com/tushartushar/DesigniteJava)
 # [DesigniteJava](https://github.com/tushartushar/DesigniteJava) + [Organic](https://github.com/opus-research/organic)
 
+Before Running Execute:
+
+**MacOS**
+`export MAVEN_OPTS="-Xms40m -Xmx2500m -XX:+UseParallelGC"`
+
+**Windows**
+`set MAVEN_OPTS="-Xms40m -Xmx2500m -XX:+UseParallelGC"`
 ## DesigniteJava
 DesigniteJava is a code quality assessment tool for code written in Java. It detects numerous design and implementation smells. It also computes many commonly used object-oriented metrics.
 

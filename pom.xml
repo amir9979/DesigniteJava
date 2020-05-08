@@ -67,7 +67,11 @@
 
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<configuration>
+                <configuration>
+                    <jvmArgs>
+                        <jvmArg>Xms40m</jvmArg>
+                        <jvmArg>Xmx2500m</jvmArg>
+                    </jvmArgs>
 				<appendAssemblyId>false</appendAssemblyId>
 				<finalName>${project.artifactId}</finalName>
 					<archive>
@@ -114,7 +118,12 @@
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
+                <configuration>
+                    <jvmArgs>
+                        <jvmArg>Xms40m</jvmArg>
+                        <jvmArg>Xmx2500m</jvmArg>
+                    </jvmArgs>
+
 					<mainClass>Designite.Designite</mainClass>
 					<arguments>
 						<argument>-i</argument>
