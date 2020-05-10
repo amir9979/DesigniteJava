@@ -51,6 +51,10 @@ public class SM_Type extends SM_SourceItem implements Vertex {
 	private Map<SM_Method, List<ImplementationCodeSmell>> smellMapping = new HashMap<>();
 	private InputArgs inputArgs;
 
+	private int startingLine;
+	private int endingLine;
+	private CompilationUnit compilationUnit;
+
 	public SM_Type(TypeDeclaration typeDeclaration, CompilationUnit compilationUnit, SM_Package pkg, InputArgs inputArgs) {
 		parentPkg = pkg;
 		if (typeDeclaration == null || compilationUnit == null)
@@ -62,6 +66,10 @@ public class SM_Type extends SM_SourceItem implements Vertex {
 		setTypeInfo();
 		setAccessModifier(typeDeclaration.getModifiers());
 		setImportList(compilationUnit);
+		this.startingLine = compilationUnit.getLineNumber(typeDeclaration.getStartPosition());
+		this.endingLine = compilationUnit.getLineNumber(typeDeclaration.getStartPosition() + typeDeclaration.getLength());
+
+		this.compilationUnit = compilationUnit;
 	}
 	
 	public List<SM_Type> getSuperTypes() {
@@ -383,7 +391,9 @@ public class SM_Type extends SM_SourceItem implements Vertex {
 					, new SourceItemInfo(getParentPkg().getParentProject().getName()
 							, getParentPkg().getName()
 							, getName()
-							, method.getName()));
+							, method.getName()
+							, method.getStartingLine()
+							, method.getEndingLine()));
 			smellMapping.put(method, detector.detectCodeSmells());
 			exportDesignSmellsToCSV(method);
 			
@@ -401,4 +411,15 @@ public class SM_Type extends SM_SourceItem implements Vertex {
 		return "Type="+name;
 	}
 
-}
+	public CompilationUnit getCompilationUnit() {
+		return this.compilationUnit;
+	}
+
+
+	public int getStartingLine() {
+		return startingLine;
+	}
+
+	public int getEndingLine() {
+		return endingLine;
+	}}

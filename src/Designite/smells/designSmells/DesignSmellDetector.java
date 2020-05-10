@@ -9,13 +9,13 @@ import Designite.smells.ThresholdsDTO;
 import Designite.smells.models.DesignCodeSmell;
 
 public abstract class DesignSmellDetector {
-	
+
 	private List<DesignCodeSmell> smells;
 	
 	private TypeMetrics typeMetrics;
 	private SourceItemInfo info;
 	private ThresholdsDTO thresholdsDTO;
-	
+
 	public DesignSmellDetector(TypeMetrics typeMetrics, SourceItemInfo info) {
 		this.typeMetrics = typeMetrics;
 		this.info = info;
@@ -34,7 +34,9 @@ public abstract class DesignSmellDetector {
 		return new DesignCodeSmell(getSourceItemInfo().getProjectName()
 				, getSourceItemInfo().getPackageName()
 				, getSourceItemInfo().getTypeName()
-				, smellName);
+				, smellName
+				, getSourceItemInfo().getStartingLineNumber()
+				, getSourceItemInfo().getEndingLineNumber());
 	}
 	
 	protected void addToSmells(DesignCodeSmell smell) {

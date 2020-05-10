@@ -1,4 +1,4 @@
-package Designite.metrics;
+package Designite.organic;
 
 import Designite.organic.collector.ClassLevelSmellDetector;
 import Designite.organic.collector.MethodLevelSmellDetector;

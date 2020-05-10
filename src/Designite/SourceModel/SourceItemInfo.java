@@ -6,6 +6,8 @@ public class SourceItemInfo {
 	private String packageName;
 	private String typeName;
 	private String methodName;
+	private int startingLineNumber;
+	private int endingLineNumber;
 	
 	public SourceItemInfo(String projectName
 			, String packageName) {
@@ -15,16 +17,22 @@ public class SourceItemInfo {
 	
 	public SourceItemInfo(String projectName
 			, String packageName
-			, String typeName) {
+			, String typeName
+			, int startingLineNumber
+			, int endingLineNumber) {
 		this(projectName, packageName);
 		this.typeName = typeName;
+		this.startingLineNumber = startingLineNumber;
+		this.endingLineNumber = endingLineNumber;
 	}
 	
 	public SourceItemInfo(String projectName
 			, String packageName
 			, String typeName
-			, String methodName) {
-		this(projectName, packageName, typeName);
+			, String methodName
+			, int startingLineNumber
+			, int endingLineNumber) {
+		this(projectName, packageName, typeName, startingLineNumber, endingLineNumber);
 		this.methodName = methodName;
 	}
 
@@ -44,5 +52,11 @@ public class SourceItemInfo {
 		return methodName;
 	}
 	
-	
+	public int getStartingLineNumber() {
+		return startingLineNumber;
+	}
+
+	public int getEndingLineNumber() {
+		return endingLineNumber;
+	}
 }

@@ -48,6 +48,8 @@ public class Constants {
 			+ ",Package Name"
 			+ ",Type Name"
 			+ ",Code Smell"
+			+ ",Starting Line"
+			+ ",Ending Line"
 			+ "\n";
 	
 	public static final String IMPLEMENTATION_CODE_SMELLS_HEADER = "Project Name"
@@ -55,12 +57,16 @@ public class Constants {
 			+ ",Type Name"
 			+ ",Method Name"
 			+ ",Code Smell"
+			+ ",Starting Line"
+			+ ",Ending Line"
 			+ "\n";
 
 	public static final String ORGANIC_TYPE_CODE_SMELLS_HEADER  = "Project Name"
 			+ ",Package Name"
 			+ ",Type Name"
 			+ ",Code Smell"
+			+ ",Starting Line"
+			+ ",Ending Line"
 			+ "\n";
 
 	public static final String ORGANIC_METHOD_CODE_SMELLS_HEADER = "Project Name"
@@ -68,6 +74,8 @@ public class Constants {
 			+ ",Type Name"
 			+ ",Method Name"
 			+ ",Code Smell"
+			+ ",Starting Line"
+			+ ",Ending Line"
 			+ "\n";
 
 	public static final boolean DEBUG = false;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import Designite.metrics.OrganicFacade;
+import Designite.organic.OrganicFacade;
 import Designite.organic.resources.Method;
 import Designite.organic.resources.Type;
 import Designite.utils.Constants;

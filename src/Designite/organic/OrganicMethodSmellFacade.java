@@ -1,4 +1,4 @@
-package Designite.metrics;
+package Designite.organic;
 
 import Designite.organic.collector.Smell;
 import Designite.organic.resources.Method;
@@ -11,6 +11,8 @@ public class OrganicMethodSmellFacade {
     String typeName;
     String methodName;
     String smellName;
+    int startingLine;
+    int endingLine;
 
     public OrganicMethodSmellFacade(String projectName, Type type, Method method, Smell smell) {
        this.projectName = projectName;
@@ -18,6 +20,8 @@ public class OrganicMethodSmellFacade {
        this.typeName = type.getTypeName();
        this.methodName = method.getMethodName();
        this.smellName = smell.getName().name();
+       this.startingLine = smell.getStartingLine();
+       this.endingLine = smell.getEndingLine();
     }
 
     @Override
@@ -27,6 +31,8 @@ public class OrganicMethodSmellFacade {
                 + "," + typeName
                 + "," + methodName
                 + "," + smellName
+                + "," + startingLine
+                + "," + endingLine
                 + "\n";
     }
 }

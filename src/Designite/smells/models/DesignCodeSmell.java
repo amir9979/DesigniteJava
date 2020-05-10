@@ -4,14 +4,20 @@ public class DesignCodeSmell extends CodeSmell {
 	
 	private String typeName;
 	private String smellName;
+	private int startingLine;
+	private int endingLine;
 	
 	public DesignCodeSmell(String projectName
 			, String packageName
 			, String typeName
-			, String smellName) {
+			, String smellName
+			, int startingLine
+			, int endingLine) {
 		super(projectName, packageName);
 		this.typeName = typeName;
 		this.smellName = smellName;
+		this.startingLine = startingLine;
+		this.endingLine = endingLine;
 	}
 
 	public String getTypeName() {
@@ -28,6 +34,8 @@ public class DesignCodeSmell extends CodeSmell {
 				+ "," + getPackageName()
 				+ "," + typeName
 				+ "," + smellName
+				+ "," + startingLine
+				+ "," + endingLine
 				+ "\n";
 	}
 

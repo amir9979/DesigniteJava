@@ -167,7 +167,9 @@ public class SM_Package extends SM_SourceItem {
 			DesignSmellFacade designSmellDetector = new DesignSmellFacade(metricsMapping.get(type)
 					, new SourceItemInfo(getParentProject().getName()
 							, getName()
-							, type.getName())
+							, type.getName()
+							, type.getStartingLine()
+							, type.getEndingLine())
 					);
 			type.extractCodeSmells();
 			smellMapping.put(type, designSmellDetector.detectCodeSmells());

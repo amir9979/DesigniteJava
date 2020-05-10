@@ -22,7 +22,7 @@ import Designite.smells.designSmells.AbstractionSmellDetector;
 
 public class AbstractionSmellDetectorTest {
 	
-	private SourceItemInfo info = new SourceItemInfo("testProject", "testPackage", "testType");
+	private SourceItemInfo info = new SourceItemInfo("testProject", "testPackage", "testType", 3, 4);
 	private ThresholdsDTO thresholds = new ThresholdsDTO();
 	
 	@Test
