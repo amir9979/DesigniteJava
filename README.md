@@ -99,20 +99,29 @@ Project adapted from [opus-research/organic](https://github.com/opus-research/or
 
 We implemented the rules published by [Bavota et al.](http://www.sciencedirect.com/science/article/pii/S0164121215001053) in order to detect all code smells types. This plugin detects the following 11 types of code smells:
 
-- **Class data should be private**: 	A class having at least one public field.
-- **Complex class**:	A class having at least one method for which McCabe cyclomatic complexity is higher than 10.
-- **Feature envy**:	All methods having more calls with another class than the one they are implemented.
-- **Blob class**:	All classes having (i) cohesion lower than the average of the system AND (ii) LOCs > 500.
-- **Lazy class**:	All classes having LOCs lower than the first quartile of the distribution of LOCs for all systems classes.
-- **Long method**:	All methods having LOCs higher than the average of the system.
-- **Long parameter list**: 	All methods having a number of parameters higher than the average of the system.
-- **Message chain**: 	All chains of methods calls longer than three.
-- **Refused bequest**: 	All classes overriding more than half of the methods inherited by a superclass.
-- **Spaghetti code**: 	A class implementing at least two long methods interacting between them through method calls or shared fields. 
-- **Speculative generality**:	A class declared as abstract having less than three children classes using its methods.
+#### Type Smells
 
-## Custom Built Tool 
+- **GodClass**
+- **ClassDataShouldBePrivate**
+- **ComplexClass**
+- **LazyClass**
+- **RefusedBequest**
+- **SpaghettiCode**
+- **SpeculativeGenerality**
+- **DataClass**
+- **BrainClass**
+- **LargeClass**
+- **SwissArmyKnife**
+- **AntiSingleton**
 
-- **Anti Singleton**: A class that provides mutable class variables, which consequently could be used as global variables.
-- **Large Class**: A class that has grown too large in term of LOCs.
-- **Swiss Army Knife**: A complex class that offers a high number of services, for example, a complex class implementing a high number of interfaces. A Swiss Army Knife is different from a Blob, because it exposes a high complexity to address all foreseeable needs of a part of a system, whereas the Blob is a singleton monopolising all processing and data of a system. Thus, several Swiss Army Knives may exist in a system, for example utility classes.
+#### Method Smells
+
+- **Feature Envy**
+- **Long Method**
+- **LongParameterList**
+- **MessageChain**
+- **DispersedCoupling**
+- **IntensiveCoupling**
+- **ShotgunSurgery**
+- **BrainMethod**
+
