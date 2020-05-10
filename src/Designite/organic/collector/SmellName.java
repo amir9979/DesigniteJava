@@ -17,5 +17,8 @@ public enum SmellName {
 	BrainClass,
 	ShotgunSurgery,
 	BrainMethod,
-	DataClass 
+	DataClass,
+	LargeClass,
+    SwissArmyKnife,
+	AntiSingleton;
 }

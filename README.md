@@ -3,10 +3,10 @@
 Before Running Execute:
 
 **MacOS**
-`export MAVEN_OPTS="-Xms40m -Xmx2500m -XX:+UseParallelGC"`
+`export MAVEN_OPTS="-Xms2048m -Xmx2048m -XX:+UseParallelGC"`
 
 **Windows**
-`set MAVEN_OPTS="-Xms40m -Xmx2500m -XX:+UseParallelGC"`
+`set MAVEN_OPTS="-Xms2048m -Xmx2048m -XX:+UseParallelGC"`
 ## DesigniteJava
 DesigniteJava is a code quality assessment tool for code written in Java. It detects numerous design and implementation smells. It also computes many commonly used object-oriented metrics.
 
@@ -111,3 +111,8 @@ We implemented the rules published by [Bavota et al.](http://www.sciencedirect.c
 - **Spaghetti code**: 	A class implementing at least two long methods interacting between them through method calls or shared fields. 
 - **Speculative generality**:	A class declared as abstract having less than three children classes using its methods.
 
+## Custom Built Tool 
+
+- **Anti Singleton**: A class that provides mutable class variables, which consequently could be used as global variables.
+- **Large Class**: A class that has grown too large in term of LOCs.
+- **Swiss Army Knife**: A complex class that offers a high number of services, for example, a complex class implementing a high number of interfaces. A Swiss Army Knife is different from a Blob, because it exposes a high complexity to address all foreseeable needs of a part of a system, whereas the Blob is a singleton monopolising all processing and data of a system. Thus, several Swiss Army Knives may exist in a system, for example utility classes.

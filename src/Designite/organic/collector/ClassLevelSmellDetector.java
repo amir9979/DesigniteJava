@@ -12,6 +12,9 @@ public class ClassLevelSmellDetector extends CompositeSmellDetector {
 		super.addDetector(new SpeculativeGenerality());
 		super.addDetector(new DataClass());
 		super.addDetector(new BrainClass());
+		super.addDetector(new LargeClass());
+		super.addDetector(new SwissArmyKnife());
+		super.addDetector(new AntiSingleton());
 	}
 
 	@Override

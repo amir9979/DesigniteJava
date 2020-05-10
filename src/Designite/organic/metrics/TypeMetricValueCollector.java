@@ -15,6 +15,9 @@ public class TypeMetricValueCollector extends MetricValueCollector {
 		addCalculator(new WOCCalculator());
 		addCalculator(new LCOM2Calculator());
 		addCalculator(new LCOM3Calculator());
+		addCalculator(new InterfaceMethodDeclarationCalculator());
+		addCalculator(new IsClassSingleton());
+		addCalculator(new AccessorCountCalculator());
 	}
 	
 	

@@ -21,7 +21,10 @@ public enum MetricName {
 	ChangingMethods("ChangingMethods"),
 	LCOM("LackOfCohesionOfMethods"),
 	LCOM2,
-	LCOM3;
+	LCOM3,
+	InterfaceMethodDeclarationCount,
+	IsSingleton,
+	AccessorCount;
 	
 	private String label;
 	
