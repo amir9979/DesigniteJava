@@ -16,7 +16,7 @@ public class OrganicTypeSmellFacade {
        this.projectName = projectName;
        this.packageName = type.getPackageName();
        this.typeName = type.getTypeName();
-       this.smellName = smell.getName().name();
+       this.smellName = smell.getName().toString();
        this.startingLine = smell.getStartingLine();
        this.endingLine = smell.getEndingLine();
     }
