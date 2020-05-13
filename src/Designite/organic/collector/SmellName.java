@@ -7,7 +7,7 @@ public enum SmellName {
 	GodClass("God Class"),
 	LazyClass("Lazy Class"),
 	LongMethod("Long Method"),
-	LongParameterList("Long ParameterList"),
+	LongParameterList("Long Parameter List"),
 	MessageChain("Message Chain"),
 	RefusedBequest("Refused Bequest"),
 	SpeculativeGenerality("Speculative Generality"),
