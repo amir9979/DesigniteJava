@@ -20,7 +20,7 @@ import Designite.smells.designSmells.HierarchySmellDetector;
 
 public class HierarchySmellDetectorTest {
 	
-	private SourceItemInfo info = new SourceItemInfo("testProject", "testPackage", "testType", 4, 5);
+	private SourceItemInfo info = new SourceItemInfo("testProject", "testPath", "testPackage", "testType", 4, 5);
 	private ThresholdsDTO thresholds = new ThresholdsDTO();
 	
 	@Test

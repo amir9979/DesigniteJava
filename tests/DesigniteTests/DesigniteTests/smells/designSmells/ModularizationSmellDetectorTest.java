@@ -20,7 +20,7 @@ import Designite.utils.models.Vertex;
 
 public class ModularizationSmellDetectorTest {
 	
-	private SourceItemInfo info = new SourceItemInfo("testProject", "testPackage", "testType", 3, 5);
+	private SourceItemInfo info = new SourceItemInfo("testProject", "testPath", "testPackage", "testType", 3, 5);
 	private ThresholdsDTO thresholds = new ThresholdsDTO();
 	
 	@Test
