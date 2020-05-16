@@ -1,7 +1,8 @@
 package Designite.smells.models;
 
 public class ImplementationCodeSmell extends CodeSmell {
-	
+
+	private String filePath;
 	private String typeName;
 	private String methodName;
 	private String smellName;
@@ -9,6 +10,7 @@ public class ImplementationCodeSmell extends CodeSmell {
 	private int endingLine;
 	
 	public ImplementationCodeSmell(String projectName
+			, String filePath
 			, String packageName
 			, String typeName
 			, String methodName
@@ -16,6 +18,7 @@ public class ImplementationCodeSmell extends CodeSmell {
 			, int startingLine
 			, int endingLine) {
 		super(projectName, packageName);
+		this.filePath = filePath;
 		this.typeName = typeName;
 		this.methodName = methodName;
 		this.smellName = smellName;
@@ -38,6 +41,7 @@ public class ImplementationCodeSmell extends CodeSmell {
 	@Override
 	public String toString() {
 		return getProjectName()
+				+ "," + filePath
 				+ "," + getPackageName()
 				+ "," + typeName
 				+ "," + methodName

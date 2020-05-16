@@ -32,6 +32,7 @@ public abstract class DesignSmellDetector {
 	
 	public DesignCodeSmell initializeCodeSmell(String smellName) {
 		return new DesignCodeSmell(getSourceItemInfo().getProjectName()
+				, getSourceItemInfo().getFilePath()
 				, getSourceItemInfo().getPackageName()
 				, getSourceItemInfo().getTypeName()
 				, smellName

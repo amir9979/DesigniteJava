@@ -318,6 +318,7 @@ public class ImplementationSmellDetector {
 	
 	private ImplementationCodeSmell initializeCodeSmell(String smellName) {
 		return new ImplementationCodeSmell(info.getProjectName()
+				, info.getFilePath()
 				, info.getPackageName()
 				, info.getTypeName()
 				, info.getMethodName()

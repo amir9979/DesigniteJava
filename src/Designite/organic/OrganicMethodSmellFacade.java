@@ -7,6 +7,7 @@ import Designite.organic.resources.Type;
 public class OrganicMethodSmellFacade {
 
     String projectName;
+    String filePath;
     String packageName;
     String typeName;
     String methodName;
@@ -16,6 +17,7 @@ public class OrganicMethodSmellFacade {
 
     public OrganicMethodSmellFacade(String projectName, Type type, Method method, Smell smell) {
        this.projectName = projectName;
+       this.filePath = type.getSourceFile().getFile().getPath();
        this.packageName = type.getPackageName();
        this.typeName = type.getTypeName();
        this.methodName = method.getMethodName();
@@ -27,6 +29,7 @@ public class OrganicMethodSmellFacade {
     @Override
     public String toString() {
         return projectName
+                + "," + filePath
                 + "," + packageName
                 + "," + typeName
                 + "," + methodName

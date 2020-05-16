@@ -20,6 +20,7 @@ public class Constants {
 	public static final String ORGANIC_METHOD_CODE_SMELLS_PATH_SUFFIX = "organicMethodCodeSmells.csv";
 
 	public static final String TYPE_METRICS_HEADER = "Project Name"
+			+ ",File Path"
 			+ ",Package Name"
 			+ ",Type Name"
 			+ ",NOF"
@@ -36,6 +37,7 @@ public class Constants {
 			+ "\n";
 	
 	public static final String METHOD_METRICS_HEADER = "Project Name"
+			+ ",File Path"
 			+ ",Package Name"
 			+ ",Type Name"
 			+ ",MethodName"
@@ -45,6 +47,7 @@ public class Constants {
 			+ "\n";
 	
 	public static final String DESIGN_CODE_SMELLS_HEADER = "Project Name"
+			+ ",File Path"
 			+ ",Package Name"
 			+ ",Type Name"
 			+ ",Code Smell"
@@ -53,6 +56,7 @@ public class Constants {
 			+ "\n";
 	
 	public static final String IMPLEMENTATION_CODE_SMELLS_HEADER = "Project Name"
+			+ ",File Path"
 			+ ",Package Name"
 			+ ",Type Name"
 			+ ",Method Name"
@@ -62,6 +66,7 @@ public class Constants {
 			+ "\n";
 
 	public static final String ORGANIC_TYPE_CODE_SMELLS_HEADER  = "Project Name"
+			+ ",File Path"
 			+ ",Package Name"
 			+ ",Type Name"
 			+ ",Code Smell"
@@ -70,6 +75,7 @@ public class Constants {
 			+ "\n";
 
 	public static final String ORGANIC_METHOD_CODE_SMELLS_HEADER = "Project Name"
+			+ ",File Path"
 			+ ",Package Name"
 			+ ",Type Name"
 			+ ",Method Name"

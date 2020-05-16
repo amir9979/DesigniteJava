@@ -19,6 +19,7 @@ import Designite.utils.models.Edge;
 
 public class SM_Package extends SM_SourceItem {
 	private List<CompilationUnit> compilationUnitList;
+	private Map<CompilationUnit, String> compilationUnitFilePathMap;
 	private List<SM_Type> typeList = new ArrayList<>();
 	private SM_Project parentProject;
 	private Map<SM_Type, TypeMetrics> metricsMapping = new HashMap<>();
@@ -28,6 +29,7 @@ public class SM_Package extends SM_SourceItem {
 	public SM_Package(String packageName, SM_Project parentObj, InputArgs inputArgs) {
 		name = packageName;
 		compilationUnitList = new ArrayList<CompilationUnit>();
+		compilationUnitFilePathMap = new HashMap<>();
 		parentProject = parentObj;
 		this.inputArgs = inputArgs;
 	}
@@ -46,8 +48,9 @@ public class SM_Package extends SM_SourceItem {
 		return typeList;
 	}
 
-	void addCompilationUnit(CompilationUnit unit) {
+	void addCompilationUnit(String filePath, CompilationUnit unit) {
 		compilationUnitList.add(unit);
+		compilationUnitFilePathMap.put(unit, filePath);
 	}
 
 	private void addNestedClass(List<SM_Type> list) {
@@ -92,6 +95,13 @@ public class SM_Package extends SM_SourceItem {
 			TypeVisitor visitor = new TypeVisitor(unit, this, inputArgs);
 			unit.accept(visitor);
 			List<SM_Type> list = visitor.getTypeList();
+			for (SM_Type type : list) {
+				try {
+					type.setFilePath(compilationUnitFilePathMap.get(unit));
+				} catch (Exception e) {
+					type.setFilePath("");
+				}
+			}
 			if (list.size() > 0) {
 				if (list.size() == 1) {
 					typeList.addAll(list); // if the compilation unit contains
@@ -146,6 +156,7 @@ public class SM_Package extends SM_SourceItem {
 	
 	private String getMetricsAsARow(TypeMetrics metrics, String typeName) {
 		return getParentProject().getName()
+				+ "," + metrics.getType().getFilePath()
 				+ "," + getName()
 				+ "," + typeName
 				+ "," + metrics.getNumOfFields()
@@ -166,6 +177,7 @@ public class SM_Package extends SM_SourceItem {
 		for (SM_Type type : typeList) { 
 			DesignSmellFacade designSmellDetector = new DesignSmellFacade(metricsMapping.get(type)
 					, new SourceItemInfo(getParentProject().getName()
+							, type.getFilePath()
 							, getName()
 							, type.getName()
 							, type.getStartingLine()
