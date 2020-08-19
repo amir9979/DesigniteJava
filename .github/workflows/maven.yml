@@ -39,5 +39,5 @@ jobs:
       working-directory: ./my-tools
 
     - name: execute
-      run: java -jar ./DesigniteJava/target/DesigniteJava.jar -i ./my-tools/ -o ./output
+      run: java -jar ./target/DesigniteJava.jar -i ./my-tools/ -o ./output
 
