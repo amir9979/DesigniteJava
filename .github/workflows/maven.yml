@@ -38,6 +38,16 @@ jobs:
       run: git fetch
       working-directory: ./my-tools
 
-    - name: execute
-      run: java -Xmx2g -jar ./target/DesigniteJava.jar -i ./my-tools/ -o ./output
+#     - name: execute
+#       run: java -Xmx2g -jar ./target/DesigniteJava.jar -i ./my-tools/ -o ./output
+    
+        
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: ./target/DesigniteJava.jar
+        # A file, directory or wildcard pattern that describes what to upload
+        path: DesigniteJava.jar
+
 
