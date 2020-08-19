@@ -22,3 +22,22 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    
+    
+    - name: Checkout tools repo
+      continue-on-error: true
+      uses: actions/checkout@v2
+      with:
+        repository: apache/wicket
+        path: ./my-tools
+        fetch-depth: 0
+    
+    
+    - name: fetch  
+      continue-on-error: true
+      run: git fetch
+      working-directory: ./my-tools
+
+    - name: execute
+      run: java -jar ./DesigniteJava/target/DesigniteJava.jar -i ./my-tools/ -o ./output
+
