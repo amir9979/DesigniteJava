@@ -25,7 +25,7 @@ public class IsClassSingleton extends MetricValueCalculator {
 					staticMethodReturnsTypeObject = true;
 				}
 			} catch (Exception e){
-				
+
 			}
 		}
 

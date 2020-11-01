@@ -93,7 +93,11 @@ public final class OrganicFacade {
             ClassLevelSmellDetector classSmellDetector = new ClassLevelSmellDetector();
             List<Smell> smells = classSmellDetector.detect(type);
             type.addAllSmells(smells);
-            getSmells(type);
+            try {
+                getSmells(type);
+            } catch (Exception e) {
+
+            }
         }
     }
 
