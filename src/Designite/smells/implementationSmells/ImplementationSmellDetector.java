@@ -47,7 +47,7 @@ public class ImplementationSmellDetector {
 	private static final String AND_OPERATOR_REGEX = "\\&\\&";
 	private static final String OR_OPERATOR_REGEX = "\\|\\|";
 	private static final Pattern EMPTY_BODY_PATTERN = Pattern.compile("^\\{\\s*\\}\\s*$");
-	
+
 	public ImplementationSmellDetector(MethodMetrics methodMetrics, SourceItemInfo info) {
 		this.methodMetrics = methodMetrics;
 		this.info = info;
@@ -55,7 +55,7 @@ public class ImplementationSmellDetector {
 		thresholdsDTO = new ThresholdsDTO();
 		smells = new ArrayList<>();
 	}
-	
+
 	public List<ImplementationCodeSmell> detectCodeSmells() {
 		detectAbstractFunctionCallFromConstructor();
 		detectComplexConditional();
@@ -318,10 +318,13 @@ public class ImplementationSmellDetector {
 	
 	private ImplementationCodeSmell initializeCodeSmell(String smellName) {
 		return new ImplementationCodeSmell(info.getProjectName()
+				, info.getFilePath()
 				, info.getPackageName()
 				, info.getTypeName()
 				, info.getMethodName()
-				, smellName);
+				, smellName
+				, info.getStartingLineNumber()
+				, info.getEndingLineNumber());
 	}
 	
 	private void addToSmells(ImplementationCodeSmell smell) {
