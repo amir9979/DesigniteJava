@@ -40,7 +40,7 @@ jobs:
       working-directory: ./my-tools
 
     - name: execute
-      run: java -Xmx2g -jar ./target/DesigniteJava.jar -i ./my-tools/ -o ./output
+      run: java -Xmx2g -jar ./target/DesigniteJava.jar -i ./my-tools/ -o ./
     
         
     - name: Upload a Build Artifact
