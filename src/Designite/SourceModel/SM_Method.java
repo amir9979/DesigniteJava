@@ -5,12 +5,7 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jdt.core.dom.FieldAccess;
-import org.eclipse.jdt.core.dom.MethodDeclaration;
-import org.eclipse.jdt.core.dom.MethodInvocation;
-import org.eclipse.jdt.core.dom.SimpleName;
-import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
-import org.eclipse.jdt.core.dom.Type;
+import org.eclipse.jdt.core.dom.*;
 
 import Designite.utils.models.Vertex;
 import Designite.visitors.DirectAceessFieldVisitor;
@@ -39,12 +34,19 @@ public class SM_Method extends SM_SourceItem implements Vertex {
 	private List<Type> typesInInstanceOf = new ArrayList<>();
 	private List<SM_Type> smTypesInInstanceOf = new ArrayList<>();
 
+	private int startingLine;
+	private int endingLine;
+
 	public SM_Method(MethodDeclaration methodDeclaration, SM_Type typeObj) {
 		name = methodDeclaration.getName().toString();
 		this.parentType = typeObj;
 		this.methodDeclaration = methodDeclaration;
 		setMethodInfo(methodDeclaration);
 		setAccessModifier(methodDeclaration.getModifiers());
+
+		CompilationUnit compUnit = parentType.getCompilationUnit();
+		this.startingLine = compUnit.getLineNumber(methodDeclaration.getStartPosition());
+		this.endingLine = compUnit.getLineNumber(startingLine + methodDeclaration.getLength());
 	}
 
 	public void setMethodInfo(MethodDeclaration method) {
@@ -288,5 +290,12 @@ public class SM_Method extends SM_SourceItem implements Vertex {
 	public List<SM_Type> getSMTypesInInstanceOf() {
 		return smTypesInInstanceOf;
 	}
-	
+
+	public int getStartingLine() {
+		return this.startingLine;
+	}
+
+	public int getEndingLine() {
+		return this.endingLine;
+	}
 }

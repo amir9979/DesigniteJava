@@ -20,7 +20,7 @@ import Designite.smells.implementationSmells.ImplementationSmellDetector;
 
 public class ImplementationSmellDetectorTest {
 	
-	private SourceItemInfo info = new SourceItemInfo("testProject", "testPackage", "testType", "testMethod");
+	private SourceItemInfo info = new SourceItemInfo("testProject", "testFilePath", "testPackage", "testType", "testMethod", 4, 5);
 	private ThresholdsDTO thresholds = new ThresholdsDTO();
 	
 	@Test

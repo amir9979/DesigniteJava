@@ -6,13 +6,19 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Designite.organic.OrganicFacade;
+import Designite.organic.resources.Method;
+import Designite.organic.resources.Type;
+import Designite.utils.Constants;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.internal.compiler.codegen.DoubleCache;
 import org.eclipse.jface.text.Document;
 
 import Designite.InputArgs;
@@ -29,11 +35,13 @@ public class SM_Project extends SM_SourceItem {
 	private Graph hierarchyGraph;
 	private Graph dependencyGraph;
 	private String unitName;
+	private Map<CompilationUnit, String> compilationUnitFilePathMap;
 
 	public SM_Project(InputArgs argsObj) {
 		this.inputArgs = argsObj;
 		sourceFileList = new ArrayList<String>();
 		compilationUnitList = new ArrayList<CompilationUnit>();
+		compilationUnitFilePathMap = new HashMap<>();
 		packageList = new ArrayList<SM_Package>();
 		hierarchyGraph = new Graph();
 		dependencyGraph = new Graph();
@@ -104,7 +112,7 @@ public class SM_Project extends SM_SourceItem {
 				pkgObj = new SM_Package(packageName, this, inputArgs);
 				packageList.add(pkgObj);
 			}
-			pkgObj.addCompilationUnit(unit);
+			pkgObj.addCompilationUnit(compilationUnitFilePathMap.get(unit), unit);
 		}
 	}
 
@@ -133,8 +141,10 @@ public class SM_Project extends SM_SourceItem {
 				int startingIndex = file.lastIndexOf(File.separatorChar);
 				unitName = file.substring(startingIndex + 1);
 				CompilationUnit unit = createAST(fileToString, unitName);
-				if (unit != null)
+				if (unit != null) {
 					compilationUnitList.add(unit);
+					compilationUnitFilePathMap.put(unit, file);
+				}
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
@@ -225,6 +235,35 @@ public class SM_Project extends SM_SourceItem {
 		}
 		hierarchyGraph.computeConnectedComponents();
 		dependencyGraph.computeStronglyConnectedComponents();
+	}
+
+
+    public void detectOrganicSmells() {
+		Logger.log("Extracting Organic Code Smells ...");
+		List<String> sourcePaths = new ArrayList<>();
+		sourcePaths.add(inputArgs.getSourceFolder());
+		OrganicFacade organicFacade = new OrganicFacade(this.getName(), sourcePaths);
+		organicFacade.extractOrganicSmells();
+
+		for (Type type: organicFacade.getTypes()) {
+			exportOrganicTypeSmellsToCSV(organicFacade, type);
+
+			for (Method method : type.getMethods()) {
+				exportOrganicMethodSmellsToCSV(organicFacade, type, method);
+			}
+		}
+	}
+
+	private void exportOrganicTypeSmellsToCSV(OrganicFacade organicFacade, Type type) {
+		CSVUtils.addAllToCSVFile(inputArgs.getOutputFolder()
+						+ File.separator + Constants.ORGANIC_TYPE_CODE_SMELLS_PATH_SUFFIX
+				, organicFacade.getTypeSmells(type));
+	}
+
+	private void exportOrganicMethodSmellsToCSV(OrganicFacade organicFacade, Type type, Method method) {
+		CSVUtils.addAllToCSVFile(inputArgs.getOutputFolder()
+						+ File.separator + Constants.ORGANIC_METHOD_CODE_SMELLS_PATH_SUFFIX
+				, organicFacade.getMethodSmells(type, method));
 	}
 
 	public void computeMetrics() {

@@ -109,4 +109,5 @@ public abstract class SM_SourceItem {
 				result += ", " + type.getName();
 		return null;
 	}
+
 }

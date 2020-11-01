@@ -21,7 +21,7 @@ import Designite.utils.models.Graph;
 
 public class EncapsulationSmellDetectorTest {
 
-	private SourceItemInfo info = new SourceItemInfo("testProject", "testPackage", "testType");
+	private SourceItemInfo info = new SourceItemInfo("testProject", "testPath", "testPackage", "testType", 0, 0);
 	//private ThresholdsDTO thresholds = new ThresholdsDTO();
 	
 	@Test
