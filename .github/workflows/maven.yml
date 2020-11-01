@@ -28,9 +28,10 @@ jobs:
       continue-on-error: true
       uses: actions/checkout@v2
       with:
-        repository: apache/wicket
+        repository: apache/Avro
         path: ./my-tools
         fetch-depth: 0
+        ref: release-1.8.0
     
     
     - name: fetch  
@@ -38,8 +39,8 @@ jobs:
       run: git fetch
       working-directory: ./my-tools
 
-#     - name: execute
-#       run: java -Xmx2g -jar ./target/DesigniteJava.jar -i ./my-tools/ -o ./output
+    - name: execute
+      run: java -Xmx2g -jar ./target/DesigniteJava.jar -i ./my-tools/ -o ./output
     
         
     - name: Upload a Build Artifact
