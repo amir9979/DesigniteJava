@@ -142,7 +142,11 @@ public class Type extends Resource {
 		try {
 			return name.substring(0, name.lastIndexOf("."));
 		} catch (Exception e) {
-			return getSourceFile().getCompilationUnit().getPackage().getName().toString();
+			PackageDeclaration p = getSourceFile().getCompilationUnit().getPackage();
+			if ( p == null) {
+				return null;
+			}
+			return p.getName().toString();
 		}
 	}
 

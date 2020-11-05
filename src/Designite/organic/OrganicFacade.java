@@ -93,11 +93,7 @@ public final class OrganicFacade {
             ClassLevelSmellDetector classSmellDetector = new ClassLevelSmellDetector();
             List<Smell> smells = classSmellDetector.detect(type);
             type.addAllSmells(smells);
-            try {
-                getSmells(type);
-            } catch (Exception e) {
-
-            }
+            getSmells(type);
         }
     }
 
@@ -107,9 +103,7 @@ public final class OrganicFacade {
            OrganicTypeSmellFacade facade = new OrganicTypeSmellFacade(projectName, type, smell);
            typeSmellsFacade.add(facade);
         }
-        System.out.println(type);
         organicTypeMapping.put(type, typeSmellsFacade);
-
         Map<Method, List<OrganicMethodSmellFacade>> methodSmellsMap = new HashMap<>();
         for (Method method : type.getMethods()) {
             List<OrganicMethodSmellFacade> methodSmellsFacade = new ArrayList<>();
