@@ -107,7 +107,6 @@ public final class OrganicFacade {
            OrganicTypeSmellFacade facade = new OrganicTypeSmellFacade(projectName, type, smell);
            typeSmellsFacade.add(facade);
         }
-        System.out.println(type);
         organicTypeMapping.put(type, typeSmellsFacade);
 
         Map<Method, List<OrganicMethodSmellFacade>> methodSmellsMap = new HashMap<>();
