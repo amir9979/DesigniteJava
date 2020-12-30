@@ -4,6 +4,7 @@ import Designite.organic.metrics.MetricName;
 import Designite.organic.resources.Method;
 import Designite.organic.resources.Type;
 import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.ITypeBinding;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 import org.eclipse.jdt.internal.core.util.ExceptionAttribute;
@@ -18,15 +19,17 @@ public class IsClassSingleton extends MetricValueCalculator {
 		boolean isConstructorPrivate = false;
 		boolean staticMethodReturnsTypeObject = false;
 		for(MethodDeclaration method : type.getMethods()) {
-			try {
 				if (method.isConstructor() && Modifier.isPrivate(method.getModifiers())) {
 					isConstructorPrivate = true;
-				} else if (Modifier.isStatic(method.getModifiers()) && method.getReturnType2().resolveBinding().getName().equals(type.resolveBinding().getName())) {
+				} else if (Modifier.isStatic(method.getModifiers())) {
+					ITypeBinding x = type.resolveBinding();
+					if (x == null){
+						continue;
+					}
+				if (method.getReturnType2().resolveBinding().getName().equals(x.getName())) {
 					staticMethodReturnsTypeObject = true;
+					}
 				}
-			} catch (Exception e){
-
-			}
 		}
 
 		if (isConstructorPrivate && staticMethodReturnsTypeObject){
